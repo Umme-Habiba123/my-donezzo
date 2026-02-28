@@ -10,7 +10,7 @@
   font-variation-settings: 'FILL' 1;
 }
 
-::-webkit-scrollbar {
+::-webkit-scrollbar  {
   width: 6px;
 }
 
