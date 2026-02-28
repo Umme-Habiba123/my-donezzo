@@ -48,7 +48,7 @@ const Login = () => {
         <input
           type="email"
           placeholder="Email"
-          className="w-full mb-3 p-2 border rounded"
+          className="w-full mb-3 p-2 border rounded "
           onChange={(e) => setEmail(e.target.value)}
         />
 
