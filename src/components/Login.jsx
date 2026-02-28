@@ -1,63 +1,32 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({ onLogin }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setIsLoading(true);
 
-    console.log("🔐 Login attempt with:", { email, password });
-
-    try {
-      const response = await fetch(
-        "https://task-api-eight-flax.vercel.app/api/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        },
-      );
-
-      const data = await response.json();
-      console.log("📥 API Response:", data);
-
-      if (response.ok) {
-        console.log("✅ Login successful!");
-        localStorage.setItem("token", data.token);
-        
-        // Store user data
-        const userData = data.user || { email, name: email.split('@')[0] };
-        localStorage.setItem("user", JSON.stringify(userData));
-        
-        console.log("💾 Stored in localStorage:", {
-          token: data.token,
-          user: userData
-        });
-        
-        console.log("🚀 Navigating to /dashboard");
-        navigate("/dashboard", { replace: true });
-      } else {
-        console.log("❌ Login failed:", data.message);
-        setError(data.message || "Invalid credentials");
-      }
-    } catch (error) {
-      console.error("🔥 Error:", error);
-      setError("Connection error. Please try again.");
-    } finally {
+    // Simple validation
+    if (!email || !password) {
+      setError('Please fill in all fields');
       setIsLoading(false);
+      return;
     }
+
+    // Demo authentication (replace with real API call)
+    setTimeout(() => {
+      if (email === 'demo@donezo.com' && password === 'demo123') {
+        onLogin({ email, name: 'Totok Michael' });
+      } else {
+        setError('Invalid email or password');
+      }
+      setIsLoading(false);
+    }, 1000);
   };
 
   return (
@@ -75,13 +44,12 @@ const Login = () => {
           <p className="text-slate-500 text-sm mb-6">Sign in to continue to your dashboard</p>
 
           {error && (
-            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 px-4 py-3 rounded-xl mb-4 text-sm flex items-center gap-2">
-              <span className="material-symbols-outlined text-lg">error</span>
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 px-4 py-3 rounded-xl mb-4 text-sm">
               {error}
             </div>
           )}
 
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                 Email Address
@@ -90,9 +58,8 @@ const Login = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
                 className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                placeholder="your@email.com"
+                placeholder="demo@donezo.com"
               />
             </div>
 
@@ -104,7 +71,6 @@ const Login = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
                 className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                 placeholder="••••••••"
               />
@@ -121,13 +87,16 @@ const Login = () => {
                   Signing in...
                 </>
               ) : (
-                <>
-                  <span className="material-symbols-outlined">login</span>
-                  Sign In
-                </>
+                'Sign In'
               )}
             </button>
           </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-sm text-slate-500">
+              Demo credentials: <span className="font-medium text-primary">demo@donezo.com</span> / <span className="font-medium text-primary">demo123</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

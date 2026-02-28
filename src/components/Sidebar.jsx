@@ -4,8 +4,9 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); 
-    navigate("/"); 
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/");
   };
 
   return (
@@ -24,19 +25,19 @@ const Sidebar = () => {
           Menu
         </p>
 
-        <a
-          className="flex items-center gap-3 px-3 py-3 bg-primary/10 text-primary dark:text-secondary rounded-xl transition-all font-medium"
-          href="#"
+        <button
+          className="w-full flex items-center gap-3 px-3 py-3 bg-primary/10 text-primary dark:text-secondary rounded-xl transition-all font-medium"
+          onClick={() => navigate("/dashboard")}
         >
           <span className="material-symbols-outlined filled-icon">
             grid_view
           </span>
           Dashboard
-        </a>
+        </button>
 
-        <a
-          className="flex items-center justify-between px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
-          href="#"
+        <button
+          className="w-full flex items-center justify-between px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+          onClick={(e) => e.preventDefault()}
         >
           <div className="flex items-center gap-3">
             <span className="material-symbols-outlined">assignment</span>
@@ -45,52 +46,52 @@ const Sidebar = () => {
           <span className="bg-primary text-white text-[10px] px-2 py-0.5 rounded-full">
             12+
           </span>
-        </a>
+        </button>
 
-        <a
-          className="flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
-          href="#"
+        <button
+          className="w-full flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+          onClick={(e) => e.preventDefault()}
         >
           <span className="material-symbols-outlined">calendar_today</span>
           Calendar
-        </a>
+        </button>
 
-        <a
-          className="flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
-          href="#"
+        <button
+          className="w-full flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+          onClick={(e) => e.preventDefault()}
         >
           <span className="material-symbols-outlined">bar_chart</span>
           Analytics
-        </a>
+        </button>
 
-        <a
-          className="flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
-          href="#"
+        <button
+          className="w-full flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+          onClick={(e) => e.preventDefault()}
         >
           <span className="material-symbols-outlined">group</span>
           Team
-        </a>
+        </button>
 
         <div className="pt-8">
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 px-3">
             General
           </p>
 
-          <a
-            className="flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
-            href="#"
+          <button
+            className="w-full flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+            onClick={(e) => e.preventDefault()}
           >
             <span className="material-symbols-outlined">settings</span>
             Settings
-          </a>
+          </button>
 
-          <a
-            className="flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
-            href="#"
+          <button
+            className="w-full flex items-center gap-3 px-3 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+            onClick={(e) => e.preventDefault()}
           >
             <span className="material-symbols-outlined">help</span>
             Help
-          </a>
+          </button>
 
           <button
             onClick={handleLogout}
