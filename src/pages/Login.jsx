@@ -41,7 +41,7 @@ const Login = () => {
         const userData = data.user || { email, name: email.split('@')[0] };
         localStorage.setItem("user", JSON.stringify(userData));
         
-        console.log("💾 Stored in localStorage:", {
+        console.log("💾 Stored in localStorage:",  {
           token: data.token,
           user: userData
         });
