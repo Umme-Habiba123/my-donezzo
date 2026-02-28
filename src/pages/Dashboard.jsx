@@ -1,10 +1,10 @@
-import StatsCards from './StatsCards';
-import ProjectAnalytics from './ProjectAnalytics';
-import Reminders from './Reminders';
-import ProjectList from './ProjectList';
-import TeamCollaboration from './TeamCollaboration';
-import ProjectProgress from './ProjectProgress';
-import TimeTracker from './TimeTracker';
+import StatsCards from '../components/StatsCards';
+import ProjectAnalytics from '../components/ProjectAnalytics';
+import Reminders from '../components/Reminders';
+import ProjectList from '../components/ProjectList';
+import TeamCollaboration from '../components/TeamCollaboration';
+import ProjectProgress from '../components/ProjectProgress';
+import TimeTracker from '../components/TimeTracker';
 
 const Dashboard = () => {
   return (
